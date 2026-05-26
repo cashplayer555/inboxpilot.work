@@ -13,8 +13,6 @@ const updates = [
 ];
 
 button.addEventListener("click", () => {
-  const random =
-    updates[Math.floor(Math.random() * updates.length)];
-
+  const random = updates[Math.floor(Math.random() * updates.length)];
   message.textContent = random;
 });
