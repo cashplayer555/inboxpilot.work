@@ -3,16 +3,26 @@ create table if not exists public.waitlist (
   name text not null,
   email text not null unique,
   business_type text not null,
-  source text not null default 'github-pages-homepage',
+  plan_interest text,
+  message text,
+  source text not null default 'github-pages-software-demo',
   created_at timestamptz not null default now()
 );
 
-alter table public.waitlist enable row level security;
+alter table public.waitlist add column if not exists plan_interest text;
+alter table public.waitlist add column if not exists message text;
+alter table public.waitlist add column if not exists source text not null default 'github-pages-software-demo';
+alter table public.waitlist add column if not exists created_at timestamptz not null default now();
 
+-- Requested setup: RLS disabled.
+alter table public.waitlist disable row level security;
+
+-- Keep public permissions narrow even with RLS disabled.
+revoke all on public.waitlist from anon, authenticated;
+grant usage on schema public to anon, authenticated;
+grant insert on public.waitlist to anon, authenticated;
+grant usage, select on all sequences in schema public to anon, authenticated;
+
+-- Remove older policies if this file is run after the RLS-enabled version.
 drop policy if exists "Anyone can join waitlist" on public.waitlist;
-
-create policy "Anyone can join waitlist"
-on public.waitlist
-for insert
-to anon, authenticated
-with check (true);
+drop policy if exists "No public read access" on public.waitlist;
