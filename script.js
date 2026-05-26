@@ -1,128 +1,94 @@
-setupNavigation();
- setupTabs();
- renderEmailList();
- renderLeadBoard();
- selectEmail(selectedEmail.id);
- renderFollowups();
- calculateRoi();
- setupDemoActions();
+const SUPABASE_URL = "https://ckxqnxbdrhyknibwydep.supabase.co";
+const SUPABASE_ANON_KEY =
+ "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNreHFueGJkcmh5a25pYnd5ZGVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTU2MzYsImV4cCI6MjA5NTMzMTYzNn0.8mYmj0KLFopES15-XhuvImLN_pJxoPEcRweM48vOjBA";
+const WAITLIST_TABLE = "waitlist";
 
- if (elements.emailList) {
- setupTabs();
- renderEmailList();
- renderLeadBoard();
- selectEmail(selectedEmail.id);
- renderFollowups();
- calculateRoi();
- setupDemoActions();
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+const waitlistForm = document.getElementById("waitlistForm");
+const submitButton = document.getElementById("submitButton");
+const formMessage = document.getElementById("formMessage");
+
+menuButton.addEventListener("click", () => {
+ navLinks.classList.toggle("open");
+});
+
+navLinks.addEventListener("click", (event) => {
+ if (event.target.matches("a")) {
+ navLinks.classList.remove("open");
  }
+});
 
- setupWaitlistForm();
-function setupNavigation() {
- if (!elements.menuButton || !elements.navLinks) {
+waitlistForm.addEventListener("submit", async (event) => {
+ event.preventDefault();
+
+ const formData = new FormData(waitlistForm);
+ const signup = {
+ name: cleanText(formData.get("name")),
+ email: cleanText(formData.get("email")).toLowerCase(),
+ business_type: cleanText(formData.get("business")),
+ source: "github-pages-homepage",
+ };
+
+ if (!signup.name || !isValidEmail(signup.email) || !signup.business_type) {
+ showMessage("Please enter a valid name, email, and business type.", true);
  return;
  }
 
- elements.menuButton.addEventListener("click", () => {
- tab.classList.add("active");
- document.getElementById(tab.dataset.panel).classList.add("active");
- document.getElementById(tab.dataset.panel)?.classList.add("active");
- });
-function renderEmailList() {
- if (!elements.emailList) {
- return;
- }
+ setLoading(true);
+ showMessage("Saving your spot...", false);
 
- elements.emailList.innerHTML = demoEmails
-function selectEmail(emailId) {
- if (!elements.draftText) {
- return;
- }
-
- selectedEmail = demoEmails.find((email) => email.id === emailId) || demoEmails[0];
-function setupDemoActions() {
- elements.generateReply.addEventListener("click", () => {
- elements.generateReply?.addEventListener("click", () => {
- elements.draftText.value = buildReply(selectedEmail);
-
- elements.copyReply.addEventListener("click", async () => {
- elements.copyReply?.addEventListener("click", async () => {
  try {
+ const response = await fetch(`${SUPABASE_URL}/rest/v1/${WAITLIST_TABLE}`, {
+ method: "POST",
+ headers: {
+ apikey: SUPABASE_ANON_KEY,
+ Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+ "Content-Type": "application/json",
+ Prefer: "return=minimal",
+ },
+ body: JSON.stringify(signup),
+ });
 
- elements.addFollowup.addEventListener("click", () => {
- elements.addFollowup?.addEventListener("click", () => {
- const followups = getFollowups();
+ if (!response.ok) {
+ const errorText = await response.text();
 
- elements.clearFollowups.addEventListener("click", () => {
- elements.clearFollowups?.addEventListener("click", () => {
- saveFollowups([]);
-
- [elements.replyTone, elements.replyGoal].forEach((control) => {
- [elements.replyTone, elements.replyGoal].filter(Boolean).forEach((control) => {
- control.addEventListener("change", () => {
-
- [elements.monthlyLeads, elements.leadValue, elements.savedRate].forEach((input) => {
- [elements.monthlyLeads, elements.leadValue, elements.savedRate].filter(Boolean).forEach((input) => {
- input.addEventListener("input", calculateRoi);
-function buildReply(email) {
- const tone = elements.replyTone.value;
- const goal = elements.replyGoal.value;
- const tone = elements.replyTone?.value || "professional";
- const goal = elements.replyGoal?.value || "book";
- const greeting = tone === "friendly" ? `Hi ${email.customer},` : `Hello ${email.customer},`;
-function renderLeadBoard() {
- if (!elements.leadBoard) {
+ if (errorText.includes("duplicate") || response.status === 409) {
+ showMessage("You are already on the early access list.", false);
+ waitlistForm.reset();
  return;
  }
 
- elements.leadBoard.innerHTML = demoEmails
-function renderFollowups() {
- if (!elements.followupList) {
- return;
+ throw new Error(errorText || `Supabase returned ${response.status}`);
  }
 
- const followups = getFollowups();
- follow: "Check back again in 2 business days if there is no response.",
- }[elements.replyGoal.value];
- }[elements.replyGoal?.value || "book"];
-}
-function updateStats() {
- if (!elements.hotLeadCount || !elements.replyCount) {
- return;
- }
-
- const hotLeads = demoEmails.filter((email) => email.score >= 88).length;
-function calculateRoi() {
- if (!elements.monthlyLeads || !elements.leadValue || !elements.savedRate) {
- return;
- }
-
- const leads = Number(elements.monthlyLeads.value || 0);
-function showDemoMessage(message) {
- if (!elements.demoMessage) {
- return;
- }
-
- elements.demoMessage.textContent = message;
-function setupWaitlistForm() {
- if (!elements.waitlistForm) {
- return;
- }
-
- elements.waitlistForm.addEventListener("submit", async (event) => {
- showFormMessage(
- "Check your Supabase table, columns, and Row Level Security policy.",
- "Could not save yet. Check your Supabase table, columns, and public insert grant.",
+ waitlistForm.reset();
+ showMessage("You're on the early access list. We'll be in touch soon.", false);
+ } catch (error) {
+ console.error("Waitlist signup failed:", error);
+ showMessage(
+ "Could not save yet. Check your Supabase table and Row Level Security policy.",
  true,
+ );
+ } finally {
+ setLoading(false);
+ }
+});
+
+function cleanText(value) {
+ return String(value || "").trim();
+}
+
+function isValidEmail(email) {
+ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 function setLoading(isLoading) {
- if (!elements.submitButton) {
- return;
- }
+ submitButton.disabled = isLoading;
+ submitButton.textContent = isLoading ? "Saving..." : "Request early access";
+}
 
- elements.submitButton.disabled = isLoading;
-function showFormMessage(message, isError) {
- if (!elements.formMessage) {
- return;
- }
-
- elements.formMessage.textContent = message;
+function showMessage(message, isError) {
+ formMessage.textContent = message;
+ formMessage.classList.toggle("error", isError);
+}
