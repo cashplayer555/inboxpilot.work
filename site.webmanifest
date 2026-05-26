@@ -1,0 +1,4 @@
+ "description": "AI email assistant for small businesses.",
+  "start_url": "index.html",
+  "start_url": "/",
+  "display": "standalone",
