@@ -5,18 +5,52 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <meta
  name="description"
- content="InboxPilot helps small businesses draft email replies, tag hot leads, and follow up faster."
+ content="InboxPilot is an AI email assistant for small businesses that drafts replies, scores leads, and prevents missed follow-ups."
  />
- <title>InboxPilot | AI Email Assistant</title>
+ <meta name="theme-color" content="#06110f" />
+ <meta property="og:title" content="InboxPilot | AI Email Assistant" />
+ <meta
+ property="og:description"
+ content="Reply faster, catch hot leads, and follow up automatically with an AI inbox assistant built for local businesses."
+ />
+ <meta property="og:type" content="website" />
+ <meta property="og:url" content="https://inboxpilot.work/" />
+ <title>InboxPilot | AI Email Assistant for Small Businesses</title>
  <link rel="preconnect" href="https://fonts.googleapis.com" />
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
  <link
  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
  rel="stylesheet"
  />
+ <link rel="manifest" href="site.webmanifest" />
  <link rel="stylesheet" href="style.css" />
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "InboxPilot",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Web",
+ "url": "https://inboxpilot.work/",
+ "description": "AI email assistant for small businesses that drafts replies, scores leads, and tracks follow-ups.",
+ "offers": [
+ {
+ "@type": "Offer",
+ "name": "Starter",
+ "price": "29",
+ "priceCurrency": "USD"
+ },
+ {
+ "@type": "Offer",
+ "name": "Pro",
+ "price": "79",
+ "priceCurrency": "USD"
+ }
+ ]
+ }
+ </script>
  </head>
- <body>
+ <body class="dark-home">
  <header class="site-header">
  <nav class="nav shell" aria-label="Primary navigation">
  <a class="brand" href="#top" aria-label="InboxPilot home">
@@ -26,14 +60,21 @@
 
  <div class="nav-links" id="navLinks">
  <a href="#features">Features</a>
- <a href="#workflow">Workflow</a>
  <a href="#pricing">Pricing</a>
- <a href="#waitlist">Waitlist</a>
+ <a href="#ads">Ads</a>
+ <a href="#download">Download</a>
+ <a href="#waitlist">Start</a>
  </div>
 
- <a class="nav-cta" href="#waitlist">Join waitlist</a>
+ <a class="nav-cta" href="dashboard.html">Try now</a>
 
- <button class="mobile-menu-button" id="menuButton" type="button" aria-label="Open menu">
+ <button
+ class="mobile-menu-button"
+ id="menuButton"
+ type="button"
+ aria-label="Open menu"
+ aria-expanded="false"
+ >
  <span></span>
  <span></span>
  <span></span>
@@ -45,26 +86,31 @@
  <section class="hero">
  <div class="shell hero-grid">
  <div class="hero-copy">
- <p class="eyebrow">AI email assistant for local businesses</p>
- <h1>Reply to customer emails before leads go cold.</h1>
+ <p class="eyebrow">AI email assistant for small businesses</p>
+ <h1>Stop losing leads because replies are too slow.</h1>
  <p class="hero-text">
- InboxPilot drafts replies, tags hot leads, summarizes threads, and reminds owners
- when a customer needs a follow-up.
+ InboxPilot drafts customer replies, scores hot leads, creates follow-up tasks, and
+ gives local businesses a faster way to turn inbox chaos into booked revenue.
  </p>
 
  <div class="hero-actions">
- <a class="button primary" href="#waitlist">Start free trial</a>
- <a class="button secondary" href="#pricing">See pricing</a>
+ <a class="button primary" href="dashboard.html">Try now</a>
+ <a class="button secondary" href="#waitlist">Join early access</a>
+ </div>
+
+ <div class="quote-strip">
+ <span>"Try now"</span>
+ <p>Open the live dashboard trial and see how InboxPilot handles real lead emails.</p>
  </div>
 
  <div class="trust-row" aria-label="Product highlights">
- <span>Gmail ready</span>
- <span>Outlook planned</span>
- <span>Setup in minutes</span>
+ <span>GitHub Pages ready</span>
+ <span>Supabase waitlist</span>
+ <span>Backend-ready roadmap</span>
  </div>
  </div>
 
- <div class="product-preview" aria-label="InboxPilot dashboard preview">
+ <div class="product-preview hero-product" aria-label="InboxPilot dashboard preview">
  <div class="preview-topbar">
  <span></span>
  <span></span>
@@ -83,16 +129,16 @@
 
  <article class="message-card">
  <div>
- <strong>Cleaning estimate</strong>
- <p>Need pricing for a 3 bed house.</p>
+ <strong>Consultation request</strong>
+ <p>Need help with a lease dispute.</p>
  </div>
  <span class="tag lead">Lead</span>
  </article>
 
  <article class="message-card">
  <div>
- <strong>Appointment change</strong>
- <p>Can we move Tuesday to Friday?</p>
+ <strong>Tour request</strong>
+ <p>Can I see the listing tomorrow?</p>
  </div>
  <span class="tag task">Task</span>
  </article>
@@ -102,9 +148,9 @@
  <div class="draft-head">
  <div>
  <p class="mini-label">AI draft</p>
- <h2>Ready to send</h2>
+ <h2>Ready in seconds</h2>
  </div>
- <span class="status-dot">92% match</span>
+ <span class="status-dot">94 lead score</span>
  </div>
 
  <p class="email-copy">
@@ -113,8 +159,8 @@
  </p>
 
  <div class="draft-actions">
- <a href="#waitlist">Edit</a>
- <a href="#waitlist">Send draft</a>
+ <a href="dashboard.html">Try now</a>
+ <a href="#pricing">See plans</a>
  </div>
  </section>
  </div>
@@ -133,8 +179,12 @@
  <span>less manual inbox work</span>
  </div>
  <div>
- <strong>$29</strong>
- <span>starter monthly plan</span>
+ <strong>$79</strong>
+ <span>target monthly plan</span>
+ </div>
+ <div>
+ <strong>20</strong>
+ <span>users to reach about $1.5k MRR</span>
  </div>
  </div>
  </section>
@@ -142,10 +192,11 @@
  <section class="section" id="features">
  <div class="shell">
  <div class="section-heading">
- <p class="eyebrow">MVP features</p>
- <h2>Everything a small team needs first.</h2>
+ <p class="eyebrow">Built for real local businesses</p>
+ <h2>Everything the first paid version needs.</h2>
  <p>
- Focus on the workflow that wins customers: read, understand, reply, and follow up.
+ A focused product for contractors, dentists, lawyers, real estate agents, med spas,
+ and service teams that cannot afford missed customer emails.
  </p>
  </div>
 
@@ -153,38 +204,45 @@
  <article class="feature-card">
  <span class="feature-icon">01</span>
  <h3>AI reply drafts</h3>
- <p>Generate short, professional responses for quote requests and bookings.</p>
+ <p>Generate professional replies for quote requests, bookings, and FAQs.</p>
  </article>
-
  <article class="feature-card">
  <span class="feature-icon">02</span>
- <h3>Lead tagging</h3>
- <p>Automatically mark new messages as hot leads, follow-ups, support, or admin.</p>
+ <h3>Lead scoring</h3>
+ <p>Prioritize messages by urgency, buying intent, budget signal, and timing.</p>
  </article>
-
  <article class="feature-card">
  <span class="feature-icon">03</span>
- <h3>Owner alerts</h3>
- <p>Highlight important emails so valuable inquiries are not buried in the inbox.</p>
+ <h3>Follow-up queue</h3>
+ <p>Remind owners before valuable conversations go cold.</p>
  </article>
-
  <article class="feature-card">
  <span class="feature-icon">04</span>
- <h3>Summaries</h3>
- <p>Turn long threads into quick context before calling or replying to a customer.</p>
+ <h3>Conversation summaries</h3>
+ <p>Turn long threads into simple context before replying or calling.</p>
+ </article>
+ <article class="feature-card">
+ <span class="feature-icon">05</span>
+ <h3>Supabase capture</h3>
+ <p>Collect early access leads now and move them into onboarding later.</p>
+ </article>
+ <article class="feature-card">
+ <span class="feature-icon">06</span>
+ <h3>Stripe-ready pricing</h3>
+ <p>Clear subscription tiers designed around small business budgets.</p>
  </article>
  </div>
  </div>
  </section>
 
- <section class="section contrast" id="workflow">
+ <section class="section contrast">
  <div class="shell workflow-grid">
  <div class="section-heading left">
- <p class="eyebrow">How it works</p>
- <h2>One clear inbox workflow.</h2>
+ <p class="eyebrow">How the trial works</p>
+ <h2>Let visitors test the product before they book.</h2>
  <p>
- Connect Gmail, review the newest unread messages, let AI draft the reply, then send
- with one click.
+ The dashboard trial uses sample emails, lead scoring, local follow-ups, and a reply
+ generator mock. It works on GitHub Pages and links cleanly from inboxpilot.work.
  </p>
  </div>
 
@@ -192,44 +250,24 @@
  <article class="step active">
  <span>1</span>
  <div>
- <h3>Connect inbox</h3>
- <p>Start with Gmail and only fetch the newest unread messages.</p>
+ <h3>Open the dashboard</h3>
+ <p>The Try now button loads `dashboard.html` without needing React or a server.</p>
  </div>
  </article>
-
  <article class="step">
  <span>2</span>
  <div>
- <h3>Draft response</h3>
- <p>InboxPilot writes a clear response in the business owner's voice.</p>
+ <h3>Generate a draft</h3>
+ <p>Visitors pick a lead email and generate a cleaner response.</p>
  </div>
  </article>
-
  <article class="step">
  <span>3</span>
  <div>
- <h3>Follow up</h3>
- <p>Lead reminders keep valuable conversations moving.</p>
+ <h3>Join early access</h3>
+ <p>The landing form sends signups to your Supabase waitlist table.</p>
  </div>
  </article>
- </div>
- </div>
- </section>
-
- <section class="section">
- <div class="shell">
- <div class="section-heading">
- <p class="eyebrow">Best-fit customers</p>
- <h2>Built for businesses that win through fast replies.</h2>
- </div>
-
- <div class="niche-grid">
- <span>Roofers</span>
- <span>Dentists</span>
- <span>Law firms</span>
- <span>Real estate agents</span>
- <span>Cleaning companies</span>
- <span>Med spas</span>
  </div>
  </div>
  </section>
@@ -238,8 +276,8 @@
  <div class="shell">
  <div class="section-heading">
  <p class="eyebrow">Simple pricing</p>
- <h2>Start small, charge monthly.</h2>
- <p>Validate the product with one niche before adding advanced features.</p>
+ <h2>Start small, sell monthly.</h2>
+ <p>These tiers are easy for small businesses to understand and easy to fulfill early.</p>
  </div>
 
  <div class="pricing-grid">
@@ -283,14 +321,78 @@
  </div>
  </section>
 
- <section class="section cta-section" id="waitlist">
+ <section class="section contrast" id="ads">
+ <div class="shell">
+ <div class="section-heading">
+ <p class="eyebrow">Google Ads starter kit</p>
+ <h2>Search ads ready for your first tests.</h2>
+ <p>
+ Use these after you pick one niche and have a simple onboarding call ready.
+ </p>
+ </div>
+
+ <div class="ad-grid">
+ <article class="ad-card">
+ <p class="mini-label">Headlines</p>
+ <ul>
+ <li>AI Email Assistant For Roofers</li>
+ <li>Reply To Leads In Seconds</li>
+ <li>Stop Missing Customer Emails</li>
+ <li>AI Follow-Ups For Local Teams</li>
+ </ul>
+ </article>
+
+ <article class="ad-card">
+ <p class="mini-label">Descriptions</p>
+ <ul>
+ <li>InboxPilot drafts replies and flags hot leads so your team responds faster.</li>
+ <li>Turn quote requests into booked calls with AI replies and follow-up reminders.</li>
+ <li>Built for small businesses that cannot afford to miss customer inquiries.</li>
+ </ul>
+ </article>
+
+ <article class="ad-card">
+ <p class="mini-label">Keywords</p>
+ <ul>
+ <li>ai email assistant for small business</li>
+ <li>automated email replies for contractors</li>
+ <li>lead follow up software</li>
+ <li>gmail ai assistant business</li>
+ </ul>
+ </article>
+ </div>
+ </div>
+ </section>
+
+ <section class="section" id="download">
  <div class="shell cta-grid">
  <div>
- <p class="eyebrow">Launch plan</p>
- <h2>Get the first 5 paying users, then improve from real demand.</h2>
+ <p class="eyebrow">GitHub-ready</p>
+ <h2>Upload the folder and your website works.</h2>
  <p>
- Pick one niche, offer setup included, collect testimonials, and keep the product
- focused on faster replies.
+ This version uses `index.html`, `dashboard.html`, `style.css`, and `script.js`.
+ It is made for GitHub Pages and your custom domain, inboxpilot.work.
+ </p>
+ </div>
+
+ <div class="download-card">
+ <p class="mini-label">Static software kit</p>
+ <h3>InboxPilot ZIP</h3>
+ <p>Includes the landing page, dashboard trial, Supabase SQL, legal pages, and SEO files.</p>
+ <a class="button primary" href="InboxPilot-static-site.zip" download>Download ZIP</a>
+ <a class="button secondary" href="dashboard.html">Try now</a>
+ </div>
+ </div>
+ </section>
+
+ <section class="section contrast" id="waitlist">
+ <div class="shell cta-grid">
+ <div>
+ <p class="eyebrow">Start collecting leads</p>
+ <h2>Send early access requests into Supabase.</h2>
+ <p>
+ The form posts to your Supabase `waitlist` table. The SQL file is set up for your
+ requested RLS-disabled mode and grants public insert access.
  </p>
  </div>
 
@@ -309,8 +411,25 @@
  <option value="Law firm">Law firm</option>
  <option value="Real estate">Real estate</option>
  <option value="Cleaning">Cleaning</option>
+ <option value="Med spa">Med spa</option>
  <option value="Other local service">Other local service</option>
  </select>
+
+ <label for="plan">Plan interest</label>
+ <select id="plan" name="plan" required>
+ <option value="">Choose one</option>
+ <option value="Starter">Starter $29/month</option>
+ <option value="Pro">Pro $79/month</option>
+ <option value="Agency">Agency $199/month</option>
+ </select>
+
+ <label for="message">What do you want it to handle?</label>
+ <textarea
+ id="message"
+ name="message"
+ rows="4"
+ placeholder="Quote requests, appointment booking, missed follow-ups..."
+ ></textarea>
 
  <button class="button primary" id="submitButton" type="submit">
  Request early access
@@ -327,7 +446,12 @@
  <span class="brand-mark">IP</span>
  <span>InboxPilot</span>
  </a>
- <p>AI email replies for small businesses that cannot afford to miss leads.</p>
+ <div class="footer-links">
+ <a href="dashboard.html">Try now</a>
+ <a href="privacy.html">Privacy</a>
+ <a href="terms.html">Terms</a>
+ <a href="setup-backend.md">Backend setup</a>
+ </div>
  </div>
  </footer>
 
