@@ -111,7 +111,7 @@ function setupWaitlistForm() {
 
  elements.waitlistForm.addEventListener("submit", async (event) => {
  showFormMessage(
- "Jacob your a retard it could not save yet. Check your Supabase table, columns, and Row Level Security policy.",
+ "Check your Supabase table, columns, and Row Level Security policy.",
  "Could not save yet. Check your Supabase table, columns, and public insert grant.",
  true,
 function setLoading(isLoading) {
