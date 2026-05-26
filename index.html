@@ -1,9 +1,414 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Website</title>
-</head>
-<body>
-  <h1>Ace is a g</h1>
-</body>
-</html>
+"use client";
+
+import { useState } from "react";
+import { saveWaitlistSignup } from "@/lib/supabase";
+
+const features = [
+ {
+ number: "01",
+ title: "AI reply drafts",
+ text: "Generate short, professional responses for quote requests, bookings, and common questions.",
+ },
+ {
+ number: "02",
+ title: "Lead tagging",
+ text: "Automatically mark new messages as hot leads, follow-ups, support, or admin.",
+ },
+ {
+ number: "03",
+ title: "Owner alerts",
+ text: "Highlight important emails so valuable inquiries are not buried in the inbox.",
+ },
+ {
+ number: "04",
+ title: "Conversation summaries",
+ text: "Turn long threads into quick context before calling or replying to a customer.",
+ },
+];
+
+const pricingPlans = [
+ {
+ name: "Starter",
+ price: "$29",
+ description: "For one owner testing AI replies.",
+ items: ["1 inbox", "200 AI replies", "Lead tagging"],
+ cta: "Get started",
+ },
+ {
+ name: "Pro",
+ price: "$79",
+ description: "For busy local teams that need every lead answered.",
+ items: ["Unlimited replies", "Follow-up automation", "Hot lead alerts"],
+ cta: "Join waitlist",
+ featured: true,
+ },
+ {
+ name: "Agency",
+ price: "$199",
+ description: "For operators managing multiple local business inboxes.",
+ items: ["Multi-client support", "Priority setup", "Template library"],
+ cta: "Talk to us",
+ },
+];
+
+const niches = [
+ "Roofers",
+ "Dentists",
+ "Law firms",
+ "Real estate agents",
+ "Cleaning companies",
+ "Med spas",
+];
+
+function getSupabaseMessage(error: unknown) {
+  if (error instanceof Error) {
+    const message = error.message.toLowerCase();
+
+    if (message.includes("not found") || message.includes("does not exist") || message.includes("404")) {
+      return "Supabase is connected, but the waitlist table is not available yet. Create the table and try again.";
+    }
+
+    return error.message;
+  }
+
+  return "Unable to save your signup right now. Please try again.";
+}
+
+export default function Home() {
+ const [isSubmitting, setIsSubmitting] = useState(false);
+ const [statusMessage, setStatusMessage] = useState(
+   "Supabase is connected and ready to save your waitlist signup.",
+ );
+ const [statusTone, setStatusTone] = useState<"default" | "success" | "error">(
+   "default",
+ );
+
+ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+   event.preventDefault();
+   setIsSubmitting(true);
+   setStatusMessage("Saving your signup to Supabase...");
+   setStatusTone("default");
+
+   const form = event.currentTarget;
+   const formData = new FormData(form);
+
+   const signup = {
+     name: String(formData.get("name") ?? "").trim(),
+     email: String(formData.get("email") ?? "").trim(),
+     business: String(formData.get("business") ?? "").trim(),
+   };
+
+   try {
+     await saveWaitlistSignup(signup);
+     setStatusMessage("Thanks! Your request was saved to Supabase.");
+     setStatusTone("success");
+     form.reset();
+   } catch (error) {
+     setStatusMessage(getSupabaseMessage(error));
+     setStatusTone("error");
+   } finally {
+     setIsSubmitting(false);
+   }
+ }
+
+ return (
+ <>
+ <header className="site-header">
+ <nav className="nav shell" aria-label="Primary navigation">
+ <a className="brand" href="#top" aria-label="InboxPilot home">
+ <span className="brand-mark">IP</span>
+ <span>InboxPilot</span>
+ </a>
+
+ <div className="nav-links">
+ <a href="#features">Features</a>
+ <a href="#workflow">Workflow</a>
+ <a href="#pricing">Pricing</a>
+ <a href="#waitlist">Waitlist</a>
+ </div>
+
+ <a className="nav-cta" href="#waitlist">
+ Join waitlist
+ </a>
+
+ <details className="mobile-menu">
+ <summary aria-label="Open menu">
+ <span />
+ <span />
+ <span />
+ </summary>
+ <div>
+ <a href="#features">Features</a>
+ <a href="#workflow">Workflow</a>
+ <a href="#pricing">Pricing</a>
+ <a href="#waitlist">Waitlist</a>
+ </div>
+ </details>
+ </nav>
+ </header>
+
+ <main id="top">
+ <section className="hero">
+ <div className="shell hero-grid">
+ <div className="hero-copy">
+ <p className="eyebrow">AI email assistant for local businesses</p>
+ <h1>Reply to customer emails before leads go cold.</h1>
+ <p className="hero-text">
+ InboxPilot drafts replies, tags hot leads, summarizes threads, and reminds owners
+ when a customer needs a follow-up.
+ </p>
+
+ <div className="hero-actions">
+ <a className="button primary" href="#waitlist">
+ Start free trial
+ </a>
+ <a className="button secondary" href="#pricing">
+ See pricing
+ </a>
+ </div>
+
+ <div className="trust-row" aria-label="Product highlights">
+ <span>Gmail ready</span>
+ <span>Outlook planned</span>
+ <span>Setup in minutes</span>
+ </div>
+ </div>
+
+ <div className="product-preview" aria-label="InboxPilot dashboard preview">
+ <div className="preview-topbar">
+ <span />
+ <span />
+ <span />
+ </div>
+
+ <div className="inbox-layout">
+ <aside className="message-list" aria-label="Sample inbox">
+ <article className="message-card active">
+ <div>
+ <strong>Roof repair quote</strong>
+ <p>Can someone come by this week?</p>
+ </div>
+ <span className="tag hot">Hot</span>
+ </article>
+
+ <article className="message-card">
+ <div>
+ <strong>Cleaning estimate</strong>
+ <p>Need pricing for a 3 bed house.</p>
+ </div>
+ <span className="tag lead">Lead</span>
+ </article>
+
+ <article className="message-card">
+ <div>
+ <strong>Appointment change</strong>
+ <p>Can we move Tuesday to Friday?</p>
+ </div>
+ <span className="tag task">Task</span>
+ </article>
+ </aside>
+
+ <section className="draft-panel" aria-label="AI draft reply">
+ <div className="draft-head">
+ <div>
+ <p className="mini-label">AI draft</p>
+ <h2>Ready to send</h2>
+ </div>
+ <span className="status-dot">92% match</span>
+ </div>
+
+ <p className="email-copy">
+ Hi Jamie, thanks for reaching out. We can take a look this week and send a quote
+ after a quick inspection. Are you available Thursday morning or Friday afternoon?
+ </p>
+
+ <div className="draft-actions">
+ <a href="#waitlist">Edit</a>
+ <a href="#waitlist">Send draft</a>
+ </div>
+ </section>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section className="metric-band" aria-label="Business impact">
+ <div className="shell metrics">
+ <div>
+ <strong>10x</strong>
+ <span>faster first response</span>
+ </div>
+ <div>
+ <strong>70%</strong>
+ <span>less manual inbox work</span>
+ </div>
+ <div>
+ <strong>$29</strong>
+ <span>starter monthly plan</span>
+ </div>
+ </div>
+ </section>
+
+ <section className="section" id="features">
+ <div className="shell">
+ <div className="section-heading">
+ <p className="eyebrow">MVP features</p>
+ <h2>Everything a small team needs first.</h2>
+ <p>
+ Focus on the workflow that wins customers: read, understand, reply, and follow up.
+ </p>
+ </div>
+
+ <div className="feature-grid">
+ {features.map((feature) => (
+ <article className="feature-card" key={feature.title}>
+ <span className="feature-icon">{feature.number}</span>
+ <h3>{feature.title}</h3>
+ <p>{feature.text}</p>
+ </article>
+ ))}
+ </div>
+ </div>
+ </section>
+
+ <section className="section contrast" id="workflow">
+ <div className="shell workflow-grid">
+ <div className="section-heading left">
+ <p className="eyebrow">How it works</p>
+ <h2>One clear inbox workflow.</h2>
+ <p>
+ Connect Gmail, review the newest unread messages, let AI draft the reply, then send
+ with one click.
+ </p>
+ </div>
+
+ <div className="steps">
+ <article className="step active">
+ <span>1</span>
+ <div>
+ <h3>Connect inbox</h3>
+ <p>Start with Gmail and only fetch the newest unread messages.</p>
+ </div>
+ </article>
+ <article className="step">
+ <span>2</span>
+ <div>
+ <h3>Draft response</h3>
+ <p>InboxPilot writes a clear response in the business owner's voice.</p>
+ </div>
+ </article>
+ <article className="step">
+ <span>3</span>
+ <div>
+ <h3>Follow up</h3>
+ <p>Lead reminders keep valuable conversations moving.</p>
+ </div>
+ </article>
+ </div>
+ </div>
+ </section>
+
+ <section className="section">
+ <div className="shell">
+ <div className="section-heading">
+ <p className="eyebrow">Best-fit customers</p>
+ <h2>Built for businesses that win through fast replies.</h2>
+ </div>
+
+ <div className="niche-grid">
+ {niches.map((niche) => (
+ <span key={niche}>{niche}</span>
+ ))}
+ </div>
+ </div>
+ </section>
+
+ <section className="section" id="pricing">
+ <div className="shell">
+ <div className="section-heading">
+ <p className="eyebrow">Simple pricing</p>
+ <h2>Start small, charge monthly.</h2>
+ <p>Validate the product with one niche before adding advanced features.</p>
+ </div>
+
+ <div className="pricing-grid">
+ {pricingPlans.map((plan) => (
+ <article
+ className={plan.featured ? "price-card featured" : "price-card"}
+ key={plan.name}
+ >
+ {plan.featured ? <div className="popular">Most popular</div> : null}
+ <h3>{plan.name}</h3>
+ <p className="price">
+ {plan.price}
+ <span>/mo</span>
+ </p>
+ <p>{plan.description}</p>
+ <ul>
+ {plan.items.map((item) => (
+ <li key={item}>{item}</li>
+ ))}
+ </ul>
+ <a href="#waitlist">{plan.cta}</a>
+ </article>
+ ))}
+ </div>
+ </div>
+ </section>
+
+ <section className="section cta-section" id="waitlist">
+ <div className="shell cta-grid">
+ <div>
+ <p className="eyebrow">Launch plan</p>
+ <h2>Get the first 5 paying users, then improve from real demand.</h2>
+ <p>
+ Pick one niche, offer setup included, collect testimonials, and keep the product
+ focused on faster replies.
+ </p>
+ </div>
+
+ <form className="waitlist-form" aria-label="Join the InboxPilot waitlist" onSubmit={handleSubmit}>
+ <label htmlFor="name">Name</label>
+ <input id="name" name="name" type="text" placeholder="Nathan" required />
+
+ <label htmlFor="email">Email</label>
+ <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+ <label htmlFor="business">Business type</label>
+ <select id="business" name="business" required defaultValue="">
+ <option value="" disabled>
+ Choose one
+ </option>
+ <option>Roofing</option>
+ <option>Dental</option>
+ <option>Law firm</option>
+ <option>Real estate</option>
+ <option>Cleaning</option>
+ <option>Other local service</option>
+ </select>
+
+ <button className="button primary" type="submit" disabled={isSubmitting}>
+ {isSubmitting ? "Saving..." : "Request early access"}
+ </button>
+ <p
+ className={`form-note ${statusTone === "success" ? "success" : statusTone === "error" ? "error" : ""}`}
+ >
+ {statusMessage}
+ </p>
+ </form>
+ </div>
+ </section>
+ </main>
+
+ <footer className="footer">
+ <div className="shell footer-inner">
+ <a className="brand" href="#top" aria-label="InboxPilot home">
+ <span className="brand-mark">IP</span>
+ <span>InboxPilot</span>
+ </a>
+ <p>AI email replies for small businesses that cannot afford to miss leads.</p>
+ </div>
+ </footer>
+ </>
+ );
+}
