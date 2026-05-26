@@ -1,9 +1,336 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>My Website</title>
-</head>
-<body>
-  <h1>Inboxpilot.work</h1>
-</body>
+<html lang="en">
+ <head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta
+ name="description"
+ content="InboxPilot helps small businesses draft email replies, tag hot leads, and follow up faster."
+ />
+ <title>InboxPilot | AI Email Assistant</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link
+ href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+ rel="stylesheet"
+ />
+ <link rel="stylesheet" href="style.css" />
+ </head>
+ <body>
+ <header class="site-header">
+ <nav class="nav shell" aria-label="Primary navigation">
+ <a class="brand" href="#top" aria-label="InboxPilot home">
+ <span class="brand-mark">IP</span>
+ <span>InboxPilot</span>
+ </a>
+
+ <div class="nav-links" id="navLinks">
+ <a href="#features">Features</a>
+ <a href="#workflow">Workflow</a>
+ <a href="#pricing">Pricing</a>
+ <a href="#waitlist">Waitlist</a>
+ </div>
+
+ <a class="nav-cta" href="#waitlist">Join waitlist</a>
+
+ <button class="mobile-menu-button" id="menuButton" type="button" aria-label="Open menu">
+ <span></span>
+ <span></span>
+ <span></span>
+ </button>
+ </nav>
+ </header>
+
+ <main id="top">
+ <section class="hero">
+ <div class="shell hero-grid">
+ <div class="hero-copy">
+ <p class="eyebrow">AI email assistant for local businesses</p>
+ <h1>Reply to customer emails before leads go cold.</h1>
+ <p class="hero-text">
+ InboxPilot drafts replies, tags hot leads, summarizes threads, and reminds owners
+ when a customer needs a follow-up.
+ </p>
+
+ <div class="hero-actions">
+ <a class="button primary" href="#waitlist">Start free trial</a>
+ <a class="button secondary" href="#pricing">See pricing</a>
+ </div>
+
+ <div class="trust-row" aria-label="Product highlights">
+ <span>Gmail ready</span>
+ <span>Outlook planned</span>
+ <span>Setup in minutes</span>
+ </div>
+ </div>
+
+ <div class="product-preview" aria-label="InboxPilot dashboard preview">
+ <div class="preview-topbar">
+ <span></span>
+ <span></span>
+ <span></span>
+ </div>
+
+ <div class="inbox-layout">
+ <aside class="message-list" aria-label="Sample inbox">
+ <article class="message-card active">
+ <div>
+ <strong>Roof repair quote</strong>
+ <p>Can someone come by this week?</p>
+ </div>
+ <span class="tag hot">Hot</span>
+ </article>
+
+ <article class="message-card">
+ <div>
+ <strong>Cleaning estimate</strong>
+ <p>Need pricing for a 3 bed house.</p>
+ </div>
+ <span class="tag lead">Lead</span>
+ </article>
+
+ <article class="message-card">
+ <div>
+ <strong>Appointment change</strong>
+ <p>Can we move Tuesday to Friday?</p>
+ </div>
+ <span class="tag task">Task</span>
+ </article>
+ </aside>
+
+ <section class="draft-panel" aria-label="AI draft reply">
+ <div class="draft-head">
+ <div>
+ <p class="mini-label">AI draft</p>
+ <h2>Ready to send</h2>
+ </div>
+ <span class="status-dot">92% match</span>
+ </div>
+
+ <p class="email-copy">
+ Hi Jamie, thanks for reaching out. We can take a look this week and send a quote
+ after a quick inspection. Are you available Thursday morning or Friday afternoon?
+ </p>
+
+ <div class="draft-actions">
+ <a href="#waitlist">Edit</a>
+ <a href="#waitlist">Send draft</a>
+ </div>
+ </section>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section class="metric-band" aria-label="Business impact">
+ <div class="shell metrics">
+ <div>
+ <strong>10x</strong>
+ <span>faster first response</span>
+ </div>
+ <div>
+ <strong>70%</strong>
+ <span>less manual inbox work</span>
+ </div>
+ <div>
+ <strong>$29</strong>
+ <span>starter monthly plan</span>
+ </div>
+ </div>
+ </section>
+
+ <section class="section" id="features">
+ <div class="shell">
+ <div class="section-heading">
+ <p class="eyebrow">MVP features</p>
+ <h2>Everything a small team needs first.</h2>
+ <p>
+ Focus on the workflow that wins customers: read, understand, reply, and follow up.
+ </p>
+ </div>
+
+ <div class="feature-grid">
+ <article class="feature-card">
+ <span class="feature-icon">01</span>
+ <h3>AI reply drafts</h3>
+ <p>Generate short, professional responses for quote requests and bookings.</p>
+ </article>
+
+ <article class="feature-card">
+ <span class="feature-icon">02</span>
+ <h3>Lead tagging</h3>
+ <p>Automatically mark new messages as hot leads, follow-ups, support, or admin.</p>
+ </article>
+
+ <article class="feature-card">
+ <span class="feature-icon">03</span>
+ <h3>Owner alerts</h3>
+ <p>Highlight important emails so valuable inquiries are not buried in the inbox.</p>
+ </article>
+
+ <article class="feature-card">
+ <span class="feature-icon">04</span>
+ <h3>Summaries</h3>
+ <p>Turn long threads into quick context before calling or replying to a customer.</p>
+ </article>
+ </div>
+ </div>
+ </section>
+
+ <section class="section contrast" id="workflow">
+ <div class="shell workflow-grid">
+ <div class="section-heading left">
+ <p class="eyebrow">How it works</p>
+ <h2>One clear inbox workflow.</h2>
+ <p>
+ Connect Gmail, review the newest unread messages, let AI draft the reply, then send
+ with one click.
+ </p>
+ </div>
+
+ <div class="steps">
+ <article class="step active">
+ <span>1</span>
+ <div>
+ <h3>Connect inbox</h3>
+ <p>Start with Gmail and only fetch the newest unread messages.</p>
+ </div>
+ </article>
+
+ <article class="step">
+ <span>2</span>
+ <div>
+ <h3>Draft response</h3>
+ <p>InboxPilot writes a clear response in the business owner's voice.</p>
+ </div>
+ </article>
+
+ <article class="step">
+ <span>3</span>
+ <div>
+ <h3>Follow up</h3>
+ <p>Lead reminders keep valuable conversations moving.</p>
+ </div>
+ </article>
+ </div>
+ </div>
+ </section>
+
+ <section class="section">
+ <div class="shell">
+ <div class="section-heading">
+ <p class="eyebrow">Best-fit customers</p>
+ <h2>Built for businesses that win through fast replies.</h2>
+ </div>
+
+ <div class="niche-grid">
+ <span>Roofers</span>
+ <span>Dentists</span>
+ <span>Law firms</span>
+ <span>Real estate agents</span>
+ <span>Cleaning companies</span>
+ <span>Med spas</span>
+ </div>
+ </div>
+ </section>
+
+ <section class="section" id="pricing">
+ <div class="shell">
+ <div class="section-heading">
+ <p class="eyebrow">Simple pricing</p>
+ <h2>Start small, charge monthly.</h2>
+ <p>Validate the product with one niche before adding advanced features.</p>
+ </div>
+
+ <div class="pricing-grid">
+ <article class="price-card">
+ <h3>Starter</h3>
+ <p class="price">$29<span>/mo</span></p>
+ <p>For one owner testing AI replies.</p>
+ <ul>
+ <li>1 inbox</li>
+ <li>200 AI replies</li>
+ <li>Lead tagging</li>
+ </ul>
+ <a href="#waitlist">Get started</a>
+ </article>
+
+ <article class="price-card featured">
+ <div class="popular">Most popular</div>
+ <h3>Pro</h3>
+ <p class="price">$79<span>/mo</span></p>
+ <p>For busy local teams that need every lead answered.</p>
+ <ul>
+ <li>Unlimited replies</li>
+ <li>Follow-up automation</li>
+ <li>Hot lead alerts</li>
+ </ul>
+ <a href="#waitlist">Join waitlist</a>
+ </article>
+
+ <article class="price-card">
+ <h3>Agency</h3>
+ <p class="price">$199<span>/mo</span></p>
+ <p>For operators managing multiple local business inboxes.</p>
+ <ul>
+ <li>Multi-client support</li>
+ <li>Priority setup</li>
+ <li>Template library</li>
+ </ul>
+ <a href="#waitlist">Talk to us</a>
+ </article>
+ </div>
+ </div>
+ </section>
+
+ <section class="section cta-section" id="waitlist">
+ <div class="shell cta-grid">
+ <div>
+ <p class="eyebrow">Launch plan</p>
+ <h2>Get the first 5 paying users, then improve from real demand.</h2>
+ <p>
+ Pick one niche, offer setup included, collect testimonials, and keep the product
+ focused on faster replies.
+ </p>
+ </div>
+
+ <form class="waitlist-form" id="waitlistForm" aria-label="Join the InboxPilot waitlist">
+ <label for="name">Name</label>
+ <input id="name" name="name" type="text" placeholder="Nathan" required />
+
+ <label for="email">Email</label>
+ <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+ <label for="business">Business type</label>
+ <select id="business" name="business" required>
+ <option value="">Choose one</option>
+ <option value="Roofing">Roofing</option>
+ <option value="Dental">Dental</option>
+ <option value="Law firm">Law firm</option>
+ <option value="Real estate">Real estate</option>
+ <option value="Cleaning">Cleaning</option>
+ <option value="Other local service">Other local service</option>
+ </select>
+
+ <button class="button primary" id="submitButton" type="submit">
+ Request early access
+ </button>
+ <p class="form-message" id="formMessage" role="status"></p>
+ </form>
+ </div>
+ </section>
+ </main>
+
+ <footer class="footer">
+ <div class="shell footer-inner">
+ <a class="brand" href="#top" aria-label="InboxPilot home">
+ <span class="brand-mark">IP</span>
+ <span>InboxPilot</span>
+ </a>
+ <p>AI email replies for small businesses that cannot afford to miss leads.</p>
+ </div>
+ </footer>
+
+ <script src="script.js"></script>
+ </body>
 </html>
