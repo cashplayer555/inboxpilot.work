@@ -1,92 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stealth Startup</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="stylesheet" href="styles.css" />
+<title>Stealth AI Startup</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#060606;
+  color:white;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top left,#1f1f1f 0%,transparent 40%),
+    radial-gradient(circle at bottom right,#121212 0%,transparent 40%);
+  z-index:-2;
+}
+
+.noise{
+  position:fixed;
+  inset:0;
+  opacity:.03;
+  background-image:url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  pointer-events:none;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.container{
+  max-width:900px;
+  width:100%;
+}
+
+.top{
+  color:#888;
+  letter-spacing:3px;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+h1{
+  font-size:clamp(3rem,8vw,7rem);
+  line-height:.95;
+  margin-bottom:20px;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0px);}
+  50%{transform:translateY(-5px);}
+}
+
+.sub{
+  color:#aaa;
+  font-size:20px;
+  line-height:1.7;
+  margin-bottom:40px;
+}
+
+.highlight{
+  color:#67ff9b;
+}
+
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  padding:30px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 0 50px rgba(255,255,255,.03);
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.row:last-child{
+  border-bottom:none;
+}
+
+.row span{
+  color:#8d8d8d;
+}
+
+.red{
+  color:#ff6f6f;
+}
+
+.green{
+  color:#67ff9b;
+}
+
+.buttons{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+button{
+  background:white;
+  color:black;
+  border:none;
+  padding:16px 28px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+button:hover{
+  transform:scale(1.06) rotate(-1deg);
+}
+
+.terminal{
+  margin-top:30px;
+  background:#0f0f0f;
+  border:1px solid #222;
+  border-radius:20px;
+  padding:25px;
+  font-family:monospace;
+  color:#67ff9b;
+  min-height:100px;
+  box-shadow:0 0 30px rgba(0,255,120,.08);
+}
+
+.cursor{
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+.footer{
+  margin-top:40px;
+  color:#666;
+  line-height:1.8;
+}
+
+.popup{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:300px;
+  background:white;
+  color:black;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+.popup h3{
+  margin-bottom:10px;
+}
+
+.popup button{
+  margin-top:10px;
+  width:100%;
+  background:black;
+  color:white;
+}
+
+.dvd{
+  position:fixed;
+  top:0;
+  left:0;
+  width:90px;
+  height:40px;
+  background:white;
+  color:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  font-weight:bold;
+  z-index:999;
+}
+
+.mega-meme{
+  position:fixed;
+  top:10px;
+  right:10px;
+  width:120px;
+  transform:rotate(8deg);
+  border-radius:20px;
+  opacity:.95;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="bg-text">
-    disruptive • ai • web3 • synergy • scalable • pivot • innovation
-  </div>
+<div class="noise"></div>
 
-  <main class="container">
+<img
+class="mega-meme"
+src="https://i.imgflip.com/30b1gx.jpg"
+>
 
-    <p class="top">CONFIDENTIAL UNICORN STARTUP</p>
+<div class="dvd" id="dvd">DVD</div>
 
-    <h1>
-      We tried making a startup.
-      <br>
-      It died instantly.
-    </h1>
+<section class="hero">
 
-    <p class="sub">
-      Founded by two elite entrepreneurs operating entirely
-      on caffeine, delusion, and “bro trust me”.
-    </p>
+<div class="container">
 
-    <div class="card">
+<p class="top">
+SERIES A FAILURE • AI POWERED • VC REJECTED
+</p>
 
-      <div class="row">
-        <span>Founder #1</span>
-        <strong>You</strong>
-      </div>
-
-      <div class="row">
-        <span>Founder #2</span>
-        <strong>Jacob</strong>
-      </div>
-
-      <div class="row">
-        <span>Monthly Revenue</span>
-        <strong>$0.03</strong>
-      </div>
-
-      <div class="row">
-        <span>Investor Confidence</span>
-        <strong>catastrophic</strong>
-      </div>
-
-      <div class="row">
-        <span>Main Strategy</span>
-        <strong>“we'll pivot later”</strong>
-      </div>
-
-      <div class="row">
-        <span>Server Status</span>
-        <strong class="red">barely alive</strong>
-      </div>
-
-    </div>
-
-    <div class="buttons">
-      <button id="copiumBtn">Investor Update</button>
-      <button id="fundBtn">Donate $1 Billion</button>
-    </div>
-
-    <p id="message"></p>
-
-    <div class="meme-box">
-      <p id="memeText">
-        loading corporate excuses...
-      </p>
-    </div>
-
-    <footer>
-      <p>
-        “We were going to change the world.”
-        <br>
-        Then we took a nap.
-      </p>
-    </footer>
-
-  </main>
-
-  <div class="dvd" id="dvd">DVD</div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<h1>
+We
