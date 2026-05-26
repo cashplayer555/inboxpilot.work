@@ -1,0 +1,16 @@
+ <url>
+    <loc>https://your-github-username.github.io/inboxpilot/</loc>
+    <loc>https://inboxpilot.work/</loc>
+    <priority>1.0</priority>
+  <url>
+    <loc>https://your-github-username.github.io/inboxpilot/privacy.html</loc>
+    <loc>https://inboxpilot.work/dashboard.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inboxpilot.work/privacy.html</loc>
+    <priority>0.4</priority>
+  <url>
+    <loc>https://your-github-username.github.io/inboxpilot/terms.html</loc>
+    <loc>https://inboxpilot.work/terms.html</loc>
+    <priority>0.4</priority>
